@@ -1,0 +1,50 @@
+﻿@model IEnumerable<VidlyMVC.Models.Customer>
+
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customers</h2>
+
+<p>
+    @Html.ActionLink("Add NEW Customer", "CustomerForm", "Customers", null, new { @class = "btn btn-primary" })
+</p>
+
+
+@if (!Model.Any())
+{
+    <p>We don't have any customers yet.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Membership Name</th>
+                <th>Date of birth</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink((string)customer.Name, "Edit", "Customers", new { id = customer.Id }, null)</td>
+
+                    <td>@customer.MembershipType.Name</td>
+                    <td>
+                        @if (customer.Dob.HasValue)
+                        {
+                            <li>@customer.Dob.Value.ToShortDateString()</li>
+                        }
+                        else
+                        {
+                            <li>NA</li>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

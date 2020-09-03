@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "type": "mssql.onprem",
+      "connectionId": "DB_A62A46_AbhishekKumar11",
+      "secretStore": null
+    }
+  }
+}
